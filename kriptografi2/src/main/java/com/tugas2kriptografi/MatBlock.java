@@ -6,6 +6,11 @@ public class MatBlock {
 
     public MatBlock(){
         this.blockArray = new int[4][4];
+        for(int i = 0; i<4; i++){
+            for(int j = 0; j<4; j++){
+                blockArray[i][j] = 0;
+            }
+        }
     }
 
     public int readBlock(int row, int col){

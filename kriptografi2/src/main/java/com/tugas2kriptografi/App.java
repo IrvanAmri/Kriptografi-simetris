@@ -1,13 +1,15 @@
 package com.tugas2kriptografi;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        //testing
+        String str = "jambu bosok enak rasane";
+        MatBlock arr[] = Services.stringToMatBlockArray(str);
+        
+        MatBlock hasil = Services.matBlockXOR(arr[0], arr[1]);
+        MatBlock variBlock[] = {arr[0],arr[1],hasil};
+        Services.visualisasiArrayOfMatBlock(variBlock);
     }
 }
