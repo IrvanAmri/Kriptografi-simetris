@@ -34,6 +34,25 @@ public class Services {
         return arr;
     }
 
+    //4. konversi array of MatBlock ke String
+    public static String matBlockArrayToString(MatBlock arr[]){
+        String str = "";
+        int n = arr.length;
+
+        //perulangan untuk setiap anggota dari arr
+        for(int i = 0; i<n; i++){
+            //perulangan untuk tiap row
+            for(int j = 0; j<4; j++){
+                //perulangan untuk tiap collumn
+                for(int k = 0; k<4; k++){
+                    str += (char)arr[i].readBlock(j, k);
+                }
+            }
+        }
+
+        return str;
+    }
+
     //visualisasi bukan suatu service, hanya untuk debugging
     public static void visualisasiArrayOfMatBlock(MatBlock[] arr){
         int n = arr.length;
