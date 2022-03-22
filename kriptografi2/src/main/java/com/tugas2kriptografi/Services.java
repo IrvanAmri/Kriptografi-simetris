@@ -2,6 +2,27 @@ package com.tugas2kriptografi;
 
 public class Services {
     private static int N = 4;
+    private static String initialValueStr = "kuduenembelaskan";
+    private static String keyStr = "opokwemeluperang";
+    public static MatBlock initialValue = generateMatBlock(initialValueStr);
+    public static MatBlock key = generateMatBlock(keyStr);
+    
+    //sementara digunakan untuk mengenerate IV dan Key
+    private static MatBlock generateMatBlock(String str){
+        MatBlock mb = new MatBlock();
+        int index = 0;
+        if(str.length()==16){
+            for(int i = 0; i<N; i++){
+                for(int j = 0; j<N; j++){
+                    int value = (int)str.charAt(index);
+                    index++;
+                    mb.writeBlock(i, j, value);
+                }
+            }
+        }
+        
+        return mb;
+    }
 
     //3. Konversi String ke Array of MatBlock
     public static MatBlock[] stringToMatBlockArray(String str){
