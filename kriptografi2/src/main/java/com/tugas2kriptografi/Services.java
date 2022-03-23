@@ -75,6 +75,31 @@ public class Services {
         return str;
     }
 
+    //7. Chaining dan Enkripsi dengan kunci
+    public static MatBlock[] chainEnkripsi(MatBlock blockSRArray[]){
+        int n = blockSRArray.length;
+        //inisialisasi blockCipherArray
+        MatBlock blockCipherArray[] = new MatBlock[n];
+        for(int i = 0; i<n; i++){
+            blockCipherArray[i] = new MatBlock();
+        }
+        //inisialisasi blockCipherArray
+
+        //xor initial value dengan blockSRArray elemen ke-0
+        //dilanjutkan xor hasilnya dengan key
+        //dan disimpan di blockCipherArray elemen ke-0
+        MatBlock init = matBlockXOR(initialValue, blockSRArray[0]);
+        blockCipherArray[0] = matBlockXOR(key, init);
+
+        //perulangan untuk chaining
+        for(int i = 1; i<n; i++){
+            MatBlock temp = matBlockXOR(blockSRArray[i], blockSRArray[i-1]);
+            blockCipherArray[i] = matBlockXOR(key, temp);
+        }
+
+        return blockCipherArray;
+    }
+
     //9. XOR operation
     public static MatBlock matBlockXOR(MatBlock mb1, MatBlock mb2){
         MatBlock hasil = new MatBlock();
