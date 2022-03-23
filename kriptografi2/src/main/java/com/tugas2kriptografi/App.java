@@ -5,19 +5,16 @@ public class App
     public static void main( String[] args )
     {
         //testing
-        String str = "jambu dengan kekuatan magis yang membuat semua orang jadi bimbang dan gundah";
+        String str = "jambuku dimakan";
         MatBlock plain[] = Services.stringToMatBlockArray(str);
-        // Services.visualisasiArrayOfMatBlock(plain);
-        MatBlock chainCipher[] = Services.chainEnkripsi(plain);
-        // Services.visualisasiArrayOfMatBlock(chainCipher);
-        System.out.println("");
-        System.out.println("cipher text: ");
-        System.out.println(Services.matBlockArrayToString(chainCipher));
-
-        MatBlock chainPlain[] = Services.chainDeskripsi(chainCipher);
-        System.out.println("");
-        System.out.println("plain text: ");
-        System.out.println(Services.matBlockArrayToString(chainPlain));
-
+        System.out.println("plain matriks: ");
+        Services.visualisasiArrayOfMatBlock(plain);
+        MatBlock shift[] = Services.shiftRows(plain);
+        System.out.println("shifted matriks: ");
+        Services.visualisasiArrayOfMatBlock(shift);
+        System.out.println(Services.matBlockArrayToString(shift));
+        MatBlock inversShift[] = Services.inversShiftRows(shift);
+        Services.visualisasiArrayOfMatBlock(inversShift);
+        System.out.println(Services.matBlockArrayToString(inversShift));
     }
 }
