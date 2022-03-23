@@ -2,8 +2,8 @@ package com.tugas2kriptografi;
 
 public class Services {
     private static int N = 4;
-    private static String initialVectorStr = "jd;o30zKhwWj5gma";
-    private static String keyStr = "klwn/.6dj1mqPjgM";
+    private static String initialVectorStr = "adaqlepigaocbiva";
+    private static String keyStr = "libdehgfbecalioa";
     public static MatBlock initialVector = generateMatBlock(initialVectorStr);
     public static MatBlock key = generateMatBlock(keyStr);
     
