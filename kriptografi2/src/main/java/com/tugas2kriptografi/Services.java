@@ -2,9 +2,9 @@ package com.tugas2kriptografi;
 
 public class Services {
     private static int N = 4;
-    private static String initialValueStr = "kuduenembelaskan";
-    private static String keyStr = "opokwemeluperang";
-    public static MatBlock initialVector = generateMatBlock(initialValueStr);
+    private static String initialVectorStr = "jd;o30zKhwWj5gma";
+    private static String keyStr = "klwn/.6dj1mqPjgM";
+    public static MatBlock initialVector = generateMatBlock(initialVectorStr);
     public static MatBlock key = generateMatBlock(keyStr);
     
     //sementara digunakan untuk mengenerate IV dan Key
@@ -216,6 +216,40 @@ public class Services {
             }
         }
         return hasil;
+    }
+
+    //10. Enkripsi
+    public static String enkripsi(String plaintext){
+        //konversi ke MatBlock array
+        MatBlock blockArray[] = stringToMatBlockArray(plaintext);
+        
+        //shift rows
+        MatBlock blockSRArray[] = shiftRows(blockArray);
+
+        //chain enkripsi
+        MatBlock blockCipherArray[] = chainEnkripsi(blockSRArray);
+
+        //konversi ke String
+        String ciphertext = matBlockArrayToString(blockCipherArray);
+
+        return ciphertext;
+    }
+
+    //11. Deskripsi
+    public static String deskripsi(String ciphertext){
+        //konversi ke MatBlock array
+        MatBlock blockCipherArray[] = stringToMatBlockArray(ciphertext);
+        
+        //chain deskripsi
+        MatBlock blockSRArray[] = chainDeskripsi(blockCipherArray);
+
+        //invers shift rows
+        MatBlock blockArray[] = inversShiftRows(blockSRArray);
+
+        //konversi ke String
+        String plaintext = matBlockArrayToString(blockArray);
+
+        return plaintext;
     }
 
     //visualisasi bukan suatu service, hanya untuk debugging
