@@ -1,2 +1,2 @@
-# Kriptografi-asimetris
+# Kriptografi-simetris
  
