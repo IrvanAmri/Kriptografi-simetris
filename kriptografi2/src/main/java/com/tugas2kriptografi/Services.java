@@ -75,6 +75,48 @@ public class Services {
         return str;
     }
 
+    //5. Shift rows
+    public static MatBlock[] shiftRows(MatBlock blockArray[]){
+        int n = blockArray.length;
+        MatBlock blockSRArray[] = new MatBlock[n];
+        //inisialisasi
+        for(int i = 0; i<n; i++){
+            blockSRArray[i] = new MatBlock();
+        }
+        //inisialisasi
+        
+        //perulangan untuk setiap anggota blockArray/blockSRArray
+        for(int i = 0; i<n; i++){
+            //isi row pertama
+            for(int j = 0; j<N; j++){
+                int value = blockArray[i].readBlock(0, j);
+                blockSRArray[i].writeBlock(0, j, value);
+            }
+            //isi row kedua
+            for(int j = 0; j<N; j++){
+                int index = (j+1)%4;
+                int value = blockArray[i].readBlock(1, index);
+                blockSRArray[i].writeBlock(1, j, value);
+            }
+            //isi row ketiga
+            for(int j = 0; j<N; j++){
+                int index = (j+2)%4;
+                int value = blockArray[i].readBlock(2, index);
+                blockSRArray[i].writeBlock(2, j, value);
+            }
+            //isi row keempat
+            for(int j = 0; j<N; j++){
+                int index = (j+3)%4;
+                int value = blockArray[i].readBlock(3, index);
+                blockSRArray[i].writeBlock(3, j, value);
+            }
+        }
+
+        return blockSRArray;
+    }
+
+    //6. inverse Shift rows
+
     //7. Chaining dan Enkripsi dengan kunci
     public static MatBlock[] chainEnkripsi(MatBlock blockSRArray[]){
         int n = blockSRArray.length;
