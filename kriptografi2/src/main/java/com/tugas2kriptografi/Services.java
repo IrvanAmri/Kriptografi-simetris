@@ -4,7 +4,7 @@ public class Services {
     private static int N = 4;
     private static String initialValueStr = "kuduenembelaskan";
     private static String keyStr = "opokwemeluperang";
-    public static MatBlock initialValue = generateMatBlock(initialValueStr);
+    public static MatBlock initialVector = generateMatBlock(initialValueStr);
     public static MatBlock key = generateMatBlock(keyStr);
     
     //sementara digunakan untuk mengenerate IV dan Key
@@ -88,16 +88,42 @@ public class Services {
         //xor initial value dengan blockSRArray elemen ke-0
         //dilanjutkan xor hasilnya dengan key
         //dan disimpan di blockCipherArray elemen ke-0
-        MatBlock init = matBlockXOR(initialValue, blockSRArray[0]);
+        MatBlock init = matBlockXOR(initialVector, blockSRArray[0]);
         blockCipherArray[0] = matBlockXOR(key, init);
 
         //perulangan untuk chaining
         for(int i = 1; i<n; i++){
-            MatBlock temp = matBlockXOR(blockSRArray[i], blockSRArray[i-1]);
+            MatBlock temp = matBlockXOR(blockSRArray[i], blockCipherArray[i-1]);
             blockCipherArray[i] = matBlockXOR(key, temp);
         }
 
         return blockCipherArray;
+    }
+
+    //8. Chaining dan Deskripsi dengan kunci
+    public static MatBlock[] chainDeskripsi(MatBlock blockCipherArray[]){
+        int n = blockCipherArray.length;
+        //inisialisasi blockSRArray
+        MatBlock blockSRArray[] = new MatBlock[n];
+        for(int i = 0; i<n; i++){
+            blockSRArray[i] = new MatBlock();
+        }
+        //inisialisasi blockSRArray
+
+        //xor blockCipherArray elemen ke-0
+        //dengan key, dilanjutkan dengan xor hasilnya
+        //dengan initial vector. hasil akhir disimpan
+        //di blockSRArray elemen ke-0
+        MatBlock init = matBlockXOR(blockCipherArray[0], key);
+        blockSRArray[0] = matBlockXOR(init, initialVector);
+
+        //perulangan untuk chaining
+        for(int i = 1; i<n; i++){
+            MatBlock temp = matBlockXOR(blockCipherArray[i], key);
+            blockSRArray[i] = matBlockXOR(blockCipherArray[i-1], temp);
+        }
+
+        return blockSRArray;
     }
 
     //9. XOR operation

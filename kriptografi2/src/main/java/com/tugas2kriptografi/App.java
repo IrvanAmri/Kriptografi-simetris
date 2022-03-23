@@ -9,9 +9,15 @@ public class App
         MatBlock plain[] = Services.stringToMatBlockArray(str);
         // Services.visualisasiArrayOfMatBlock(plain);
         MatBlock chainCipher[] = Services.chainEnkripsi(plain);
-        Services.visualisasiArrayOfMatBlock(chainCipher);
+        // Services.visualisasiArrayOfMatBlock(chainCipher);
         System.out.println("");
         System.out.println("cipher text: ");
         System.out.println(Services.matBlockArrayToString(chainCipher));
+
+        MatBlock chainPlain[] = Services.chainDeskripsi(chainCipher);
+        System.out.println("");
+        System.out.println("plain text: ");
+        System.out.println(Services.matBlockArrayToString(chainPlain));
+
     }
 }
