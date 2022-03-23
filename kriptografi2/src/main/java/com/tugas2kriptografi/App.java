@@ -5,7 +5,19 @@ public class App
     public static void main( String[] args )
     {
         //testing
-        MatBlock variBlock[] = {Services.initialValue,Services.key};
-        Services.visualisasiArrayOfMatBlock(variBlock);
+        String str = "jambu dengan kekuatan magis yang membuat semua orang jadi bimbang dan gundah";
+        MatBlock plain[] = Services.stringToMatBlockArray(str);
+        // Services.visualisasiArrayOfMatBlock(plain);
+        MatBlock chainCipher[] = Services.chainEnkripsi(plain);
+        // Services.visualisasiArrayOfMatBlock(chainCipher);
+        System.out.println("");
+        System.out.println("cipher text: ");
+        System.out.println(Services.matBlockArrayToString(chainCipher));
+
+        MatBlock chainPlain[] = Services.chainDeskripsi(chainCipher);
+        System.out.println("");
+        System.out.println("plain text: ");
+        System.out.println(Services.matBlockArrayToString(chainPlain));
+
     }
 }
