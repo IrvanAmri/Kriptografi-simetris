@@ -12,6 +12,9 @@ public class App
         MatBlock shift[] = Services.shiftRows(plain);
         System.out.println("shifted matriks: ");
         Services.visualisasiArrayOfMatBlock(shift);
-
+        System.out.println(Services.matBlockArrayToString(shift));
+        MatBlock inversShift[] = Services.inversShiftRows(shift);
+        Services.visualisasiArrayOfMatBlock(inversShift);
+        System.out.println(Services.matBlockArrayToString(inversShift));
     }
 }
